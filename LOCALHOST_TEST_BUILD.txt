@@ -1,0 +1,5 @@
+Generated from: /Users/mac/Downloads/brain2_ai_miner_web_0_9_14/extension
+Added exact local test origins:
+- http://localhost:3000
+- http://127.0.0.1:3000
+This is a developer test build. Do not publish this localhost-expanded manifest to the Chrome Web Store.
