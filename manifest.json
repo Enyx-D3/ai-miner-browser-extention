@@ -42,6 +42,7 @@
         "http://127.0.0.1:3000/*"
       ],
       "js": [
+        "provider_adapters.js",
         "capture.js"
       ],
       "run_at": "document_idle"
