@@ -3,18 +3,58 @@ on:
   pull_request:
   push:
     branches: [global-context-gap-fill, main]
+
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node --check capture.js
-      - run: node --check provider_adapters.js
-      - run: node --check service_worker.js
-      - run: node --check bridge.js
-      - run: node --check sidepanel.js
-      - run: node test-global-context.mjs
-      - run: node test-provider-adapters.mjs
+
+      - name: Syntax
+        run: |
+          node --check capture.js
+          node --check provider_adapters.js
+          node --check service_worker.js
+          node --check queue_db.js
+          node --check bridge.js
+          node --check sidepanel.js
+
+      - name: Global Context contract
+        run: node test-global-context.mjs
+
+      - name: Provider adapters
+        run: node test-provider-adapters.mjs
+
+      - name: Static Phase 4 acceptance
+        run: node test-static.mjs
+
+      - name: Vault and connector regression
+        run: node test-extension-vault.mjs
+
+      - name: Release hygiene
+        run: node test-release-hygiene.mjs
+
+      - name: Checkout Web canonical embedded extension
+        uses: actions/checkout@v4
+        with:
+          repository: Enyx-D3/ai-miner-web
+          ref: global-context-gap-fill
+          path: web-upstream
+
+      - name: Standalone ↔ Web parity
+        run: node test-web-parity.mjs web-upstream/extension
+
+      - name: Phase 4 receipt
+        run: |
+          echo "EXTENSION_SYNTAX=PASS"
+          echo "EXTENSION_GLOBAL_CONTEXT=PASS"
+          echo "EXTENSION_PROVIDER_ADAPTERS=PASS"
+          echo "EXTENSION_STATIC_ACCEPTANCE=PASS"
+          echo "EXTENSION_VAULT=PASS"
+          echo "EXTENSION_PARITY=PASS"
+          echo "EXTENSION_HYGIENE=PASS"
+          echo "EXTENSION_PHASE4_FINAL=0"
