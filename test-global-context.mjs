@@ -5,4 +5,4 @@ for(const v of ["Context","Capture","Connection","Bounded handoff","PREVIEW ONLY
 for(const v of ["BRAIN2_CONTEXT_PREVIEW_UPDATE","BRAIN2_CLEAR_CONTEXT_PREVIEW","contextPreview"])if(!worker.includes(v))throw new Error(`Extension worker missing ${v}`);
 for(const v of ["BRAIN2_CONTEXT_PREVIEW","BRAIN2_CONTEXT_PREVIEW_CLEAR"])if(!bridge.includes(v))throw new Error(`Extension bridge missing ${v}`);
 if(!js.includes("/continue"))throw new Error("Extension prepare-context route missing");
-console.log("Global Context extension gap-fill static contract PASS");
+console.log("brain2:inContext extension gap-fill static contract PASS");

@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Global Context",
+  "name": "brain2:inContext Capture",
   "version": "0.8.6",
   "minimum_chrome_version": "116",
-  "description": "Captures completed ChatGPT, Claude, and Gemini turns and connects to Brain2 with a real-time persistent two-tab side panel.",
+  "description": "Captures completed ChatGPT, Claude, and Gemini turns into the brain2:inContext continuity workspace.",
   "permissions": [
     "storage",
     "scripting",
@@ -27,7 +27,7 @@
     "service_worker": "service_worker.js"
   },
   "action": {
-    "default_title": "Brain2 AI Miner"
+    "default_title": "brain2:inContext"
   },
   "side_panel": {
     "default_path": "sidepanel.html"
